@@ -1,9 +1,4 @@
 import streamlit as st
-import pyttsx3
-
-# Initialize text-to-speech engine
-engine = pyttsx3.init()
-engine.setProperty('rate', 150)
 
 # Streamlit setup
 st.set_page_config(page_title="Step-by-Step Cooking Chatbot", page_icon="🍛")
@@ -64,8 +59,6 @@ if user_input:
         st.markdown(f"**English Steps:**\n\n{en_steps}")
         st.markdown("---")
         st.markdown(f"**தமிழ் படிகள்:**\n\n{ta_steps}")
-        engine.say("Here is the step by step process")
-        engine.runAndWait()
 
     elif query.startswith("what is") or query.startswith("explain"):
         keyword = query.replace("what is", "").replace("explain", "").strip()
@@ -73,17 +66,11 @@ if user_input:
             en_def, ta_def = definitions[keyword]
             st.markdown(f"**English Meaning:** {en_def}")
             st.markdown(f"**தமிழ் விளக்கம்:** {ta_def}")
-            engine.say(en_def)
-            engine.runAndWait()
         else:
             st.warning("Sorry, I don’t have that explanation yet. Ask about common terms like 'urad dal', 'tawa', etc.")
-            engine.say("Term not found")
-            engine.runAndWait()
 
     else:
         st.warning("Sorry, I don't have that recipe yet. Try 'idly', 'dosa', 'curd rice', or 'ice cream'.")
-        engine.say("Recipe not found")
-        engine.runAndWait()
 
 # Footer
 st.markdown("---")
